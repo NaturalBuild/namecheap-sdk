@@ -9,5 +9,10 @@
             "email": "saddamrhossain@gmail.com"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "Namecheap\\": "src/Namecheap"
+        }
+    },
     "require": {}
 }
