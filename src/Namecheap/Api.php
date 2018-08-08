@@ -2,7 +2,15 @@
 namespace Namecheap;
 
 use Namecheap\Exception\AuthenticationException;
-
+/**
+ * Namecheap API wrapper
+ *
+ * Main Abstract class
+ *
+ * @author Saddam Hossain <saddamrhossain@gmail.com>
+ *
+ * @version 1
+ */
 Abstract class Api {
 
 	public $endPoint = 'https://api.sandbox.namecheap.com/xml.response';

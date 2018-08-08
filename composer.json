@@ -1,8 +1,9 @@
 {
     "name": "saddamrhossain/namecheap-sdk",
-    "description": "Namecheap API sdk",
+    "description": "SDK library for Namecheap APIs",
     "type": "library",
     "license": "MIT",
+    "keywords": ["Namecheap", "api", "SDK"],
     "authors": [
         {
             "name": "Saddam Hossain",
@@ -14,5 +15,7 @@
             "Namecheap\\": "src/Namecheap"
         }
     },
-    "require": {}
+    "require": {
+        "php": ">=5.6"
+    }
 }
