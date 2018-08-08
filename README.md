@@ -8,14 +8,39 @@ Namecheap SDK for APIs
 Namecheap SDK is a PHP lib that makes it easy to manage Namecheap APIs.
 
 ## API Methods Examples:
-#### Domains
+#### domains
 ```php
 $ncDomains = new  Namecheap\Domains\Domains($apiUser, $apiKey, $userName, $clientIp);
 $domainList = $ncDomains->getList();
 $contactsInfo = $ncDomains->getContacts($domainName);
 $result = $ncDomains->create($dataArr);
 ```
-#### Users
+
+#### domains.dns
+```php
+$ncDomainsDns = new  Namecheap\DomainsDns\DomainsDns($apiUser, $apiKey, $userName, $clientIp);
+$list = $ncDomainsDns->getList('domain', 'com');
+$default = $ncDomainsDns->setDefault('domain', 'com');
+```
+
+#### domains.ns
+```php
+$ncDomainsNs = new  Namecheap\DomainsNs\DomainsNs($apiUser, $apiKey, $userName, $clientIp);
+$list = $ncDomainsNs->create('domain', 'com', 'ns1.domain.com', '192.165.15.103');
+```
+
+#### domains.transfer
+```php
+$ncDomainsTrns = new  Namecheap\DomainsTransfer\DomainsTransfer($apiUser, $apiKey, $userName, $clientIp);
+$getStatus = $ncDomainsTrns->getStatus($transferID);
+```
+#### ssl
+```php
+$ncSsl = new  Namecheap\Ssl\Ssl($apiUser, $apiKey, $userName, $clientIp);
+$result = $ncSsl->create($Years, $Type, $SANStoADD, $PromotionCode);
+```
+
+#### users
 ```php
 $ncUsers = new  Namecheap\Users\Users($apiUser, $apiKey, $userName, $clientIp);
 $pricing = $ncUsers->getPricing('DOMAIN');
@@ -25,6 +50,19 @@ $result = $ncUsers->changePassword($oldPassword, $newPassword);
 # Reset pass
 $result = $ncUsers->changePassword($resetCode, $newPassword, true);
 ```
+
+#### users.address
+```php
+$ncUsersAddr = new  Namecheap\UsersAddress\UsersAddress($apiUser, $apiKey, $userName, $clientIp);
+$getStatus = $ncUsersAddr->getInfo($AddressId);
+```
+
+#### whoisguard
+```php
+$ncWhoisguard = new  Namecheap\Whoisguard\Whoisguard($apiUser, $apiKey, $userName, $clientIp);
+$result = $ncWhoisguard->getInfo($WhoisguardID, $ForwardedToEmail);
+```
+
 ## Help and docs
 
 ## Installing
