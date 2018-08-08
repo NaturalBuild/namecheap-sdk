@@ -1,0 +1,13 @@
+{
+    "name": "saddamrhossain/namecheap-sdk",
+    "description": "Namecheap API sdk",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Saddam Hossain",
+            "email": "saddamrhossain@gmail.com"
+        }
+    ],
+    "require": {}
+}
