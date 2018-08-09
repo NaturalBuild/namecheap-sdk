@@ -3,7 +3,7 @@ Namecheap SDK for APIs
 
 [![Latest Version](https://img.shields.io/badge/release-v1.0-blue.svg)]()
 [![Build Status](https://img.shields.io/badge/build-error-lightgrey.svg)]()
-[![Total Downloads](https://img.shields.io/badge/downloads-1k-green.svg)](https://packagist.org/packages/guzzlehttp/guzzle)
+[![Total Downloads](https://img.shields.io/badge/downloads-1k-green.svg)]()
 
 Namecheap SDK is a PHP lib that makes it easy to manage Namecheap APIs.
 
@@ -67,7 +67,7 @@ $result = $ncWhoisguard->getInfo($WhoisguardID, $ForwardedToEmail);
 
 ## Installing
 
-The recommended way to install Guzzle is through
+The recommended way to install Namecheap-sdk is through
 [Composer](http://getcomposer.org).
 
 ```bash
@@ -75,7 +75,7 @@ The recommended way to install Guzzle is through
 curl -sS https://getcomposer.org/installer | php
 ```
 
-Next, run the Composer command to install the latest stable version of Guzzle:
+Next, run the Composer command to install the latest stable version of Namecheap-sdk:
 
 ```bash
 php composer.phar require saddamrhossain/namecheap-sdk
