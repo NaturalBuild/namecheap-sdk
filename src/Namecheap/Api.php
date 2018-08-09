@@ -2,6 +2,7 @@
 namespace Namecheap;
 
 use Namecheap\Exception\AuthenticationException;
+use Namecheap\Xml;
 /**
  * Namecheap API wrapper
  *
@@ -122,13 +123,7 @@ Abstract class Api {
             throw new UnauthorizedException('No Permission to perform this request');
         }
 
-        $response = json_decode($xmlData);
-
-        # Parse XML data to array
-		$ob= simplexml_load_string($xmlData);
-		$json  = json_encode($ob);
-		return json_decode($json, true);
-
+        return Xml::toJson($xmlData);
 	}
 }
 
