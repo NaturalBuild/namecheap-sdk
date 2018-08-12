@@ -20,6 +20,7 @@ Abstract class Api {
 	public $userName;
 	public $clientIp;
 	public $curl_options;
+	public $returnType = 'xml';
 
 	public function __construct() {
 		$num_args = func_num_args();
@@ -32,12 +33,17 @@ Abstract class Api {
 			$this->userName = $client->userName;
 			$this->clientIp = $client->clientIp;
 			$this->curl_options = $client->curl_options;
-		} else if ($num_args === 4) {
+			$this->returnType = $client->returnType;
+		} else if ($num_args >= 4) {
 			$args = func_get_args();
 			$this->apiUser  = $args[0];
 			$this->apiKey   = $args[1];
 			$this->userName = $args[2];
 			$this->clientIp = $args[3];
+
+			if (isset($args[4]) && !empty($args[4])) {
+				$this->returnType = $args[4];
+			}
 		}
 	}
 
@@ -122,8 +128,8 @@ Abstract class Api {
         if (in_array($http_code, [401, 403])) {
             throw new UnauthorizedException('No Permission to perform this request');
         }
-
-        return Xml::toJson($xmlData);
+        
+        return $this->returnType === 'json' ? Xml::toJson($xmlData) : $xmlData;
 	}
 }
 
