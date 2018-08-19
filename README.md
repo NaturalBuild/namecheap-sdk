@@ -10,7 +10,7 @@ Namecheap SDK is a PHP lib that makes it easy to manage Namecheap APIs.
 ## API Methods Examples:
 #### domains
 ```php
-$ncDomains = new  Namecheap\Domains\Domains($apiUser, $apiKey, $userName, $clientIp);
+$ncDomains = new  Namecheap\Domain\Domains($apiUser, $apiKey, $userName, $clientIp);
 $domainList = $ncDomains->getList();
 $contactsInfo = $ncDomains->getContacts($domainName);
 $result = $ncDomains->create($dataArr);
@@ -18,20 +18,20 @@ $result = $ncDomains->create($dataArr);
 
 #### domains.dns
 ```php
-$ncDomainsDns = new  Namecheap\DomainsDns\DomainsDns($apiUser, $apiKey, $userName, $clientIp);
+$ncDomainsDns = new  Namecheap\Domain\DomainsDns($apiUser, $apiKey, $userName, $clientIp);
 $list = $ncDomainsDns->getList('domain', 'com');
 $default = $ncDomainsDns->setDefault('domain', 'com');
 ```
 
 #### domains.ns
 ```php
-$ncDomainsNs = new  Namecheap\DomainsNs\DomainsNs($apiUser, $apiKey, $userName, $clientIp);
+$ncDomainsNs = new  Namecheap\Domain\DomainsNs($apiUser, $apiKey, $userName, $clientIp);
 $list = $ncDomainsNs->create('domain', 'com', 'ns1.domain.com', '192.165.15.103');
 ```
 
 #### domains.transfer
 ```php
-$ncDomainsTrns = new  Namecheap\DomainsTransfer\DomainsTransfer($apiUser, $apiKey, $userName, $clientIp);
+$ncDomainsTrns = new  Namecheap\Domain\DomainsTransfer($apiUser, $apiKey, $userName, $clientIp);
 $getStatus = $ncDomainsTrns->getStatus($transferID);
 ```
 #### ssl
@@ -53,7 +53,7 @@ $result = $ncUsers->changePassword($resetCode, $newPassword, true);
 
 #### users.address
 ```php
-$ncUsersAddr = new  Namecheap\UsersAddress\UsersAddress($apiUser, $apiKey, $userName, $clientIp);
+$ncUsersAddr = new  Namecheap\Users\UsersAddress($apiUser, $apiKey, $userName, $clientIp);
 $getStatus = $ncUsersAddr->getInfo($AddressId);
 ```
 
