@@ -14,7 +14,7 @@ use Namecheap\Xml;
  */
 Abstract class Api {
 
-	public $endPoint = 'https://api.sandbox.namecheap.com/xml.response';
+	public $endPoint = 'https://api.namecheap.com/xml.response';
 	public $apiUser;
 	public $apiKey;
 	public $userName;
@@ -47,11 +47,20 @@ Abstract class Api {
 		}
 	}
 
+	public function endPoint($endPoint) { $this->endPoint  = $endPoint; }
 	public function apiUser($apiUser) 	{ $this->apiUser  = $apiUser; }
 	public function apiKey($apiKey) 	{ $this->apiKey   = $apiKey;  }
 	public function userName($userName) { $this->userName = $userName;}
 	public function clientIp($clientIp) { $this->clientIp = $clientIp;}
 	public function setCurlOption($key, $value) { $this->curl_options[$key] = $value; }
+
+	public function enableSandbox() {
+		$this->endPoint  = 'https://api.sandbox.namecheap.com/xml.response';
+	}
+
+	public function disableSandbox() {
+		$this->endPoint  = 'https://api.namecheap.com/xml.response';
+	}
 
 	/*API call method for sending requests using GET*/
 	public function get($command, array $data = []) {
