@@ -12,7 +12,7 @@ use Namecheap\Xml;
  *
  * @version 1
  */
-Abstract class Api {
+class Api {
 
 	public $endPoint = 'https://api.namecheap.com/xml.response';
 	public $apiUser;
@@ -53,6 +53,7 @@ Abstract class Api {
 	public function userName($userName) { $this->userName = $userName;}
 	public function clientIp($clientIp) { $this->clientIp = $clientIp;}
 	public function setCurlOption($key, $value) { $this->curl_options[$key] = $value; }
+	public function setReturnType($returnType) { $this->returnType = $returnType; }
 
 	public function enableSandbox() {
 		$this->endPoint  = 'https://api.sandbox.namecheap.com/xml.response';
@@ -138,7 +139,12 @@ Abstract class Api {
             throw new UnauthorizedException('No Permission to perform this request');
         }
         
-        return $this->returnType === 'json' ? Xml::toJson($xmlData) : $xmlData;
+        if ($this->returnType === 'json') {
+        	return json_encode(Xml::createArray($xmlData));
+        } else if ($this->returnType === 'array') {
+        	return Xml::createArray($xmlData);
+        }
+        return $xmlData;
 	}
 }
 
