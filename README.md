@@ -8,9 +8,20 @@ Namecheap SDK for APIs
 Namecheap SDK is a PHP lib that makes it easy to manage Namecheap APIs.
 
 ## API Methods Examples:
+
+### Create a connection to the Namecheap API which you can then pass into other services, e.g. domains, later on
+```php
+$client = new Namecheap\Api($apiUser, $apiKey, $userName, $clientIp, $returnType);
+// Return type can be: xml (default), array, json
+$ncDomains = new  Namecheap\Domain\Domains($client);
+$domainList = $ncDomains->getList();
+$contactsInfo = $ncDomains->getContacts($domainName);
+$result = $ncDomains->create($dataArr);
+```
+
 #### domains
 ```php
-$ncDomains = new  Namecheap\Domain\Domains($apiUser, $apiKey, $userName, $clientIp);
+$ncDomains = new  Namecheap\Domain\Domains($apiUser, $apiKey, $userName, $clientIp, 'json');
 $domainList = $ncDomains->getList();
 $contactsInfo = $ncDomains->getContacts($domainName);
 $result = $ncDomains->create($dataArr);
