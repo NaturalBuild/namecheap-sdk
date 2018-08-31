@@ -10,7 +10,7 @@ use Exception;
 class Xml {
     private static $xml = null;
     private static $encoding = 'UTF-8';
-    private static $finalArr = [];
+
     /**
      * Initialize the root XML node [optional].
      *
@@ -50,23 +50,6 @@ class Xml {
         $array[$xml->documentElement->tagName] = self::convert($xml->documentElement);
         self::$xml = null;    // clear the xml node in the class for 2nd time use.
         return $array;
-    }
-
-
-    public function _parseAttributes($arr=[], $index='') {
-    	foreach ($arr as $key => $value) {
-    		$index = $key;
-    		if (!is_array($value)) {
-  				self::$finalArr[$index] = $value;
-    		} else {
-    			self::_parseAttributes($value, $index);
-    			//self::$finalArr[$key][] = $value;
-    		}
-    	}    		
-    }
-
-    public function getFinelArr() {
-    	return self::$finalArr;
     }
 
     /**
@@ -126,6 +109,11 @@ class Xml {
                     // if its an leaf node, store the value in @value instead of directly storing it.
                     if (!is_array($output) && !empty($output)) {
                         $output = ['__text' => $output];
+                        if (count($a)) {
+                            foreach ($a as $kk => $vv) {
+                                $output['_'.$kk] = $vv;
+                            }
+                        }
                     } else {
                         foreach ($a as $k => $v) {
                             $output['_'.$k] = $v;       
