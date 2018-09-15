@@ -358,13 +358,13 @@ class Domains extends Api {
 			#Req
 
 			#opt
-			'IdnCode' 			=> !empty($d['idnCode']) ? $d['idnCode'] : null,
-			'Nameservers' 		=> !empty($d['nameservers']) ? $d['nameservers'] : null,
-			'AddFreeWhoisguard' => !empty($d['addFreeWhoisguard']) ? $d['addFreeWhoisguard'] : null,
-			'WGEnabled' 		=> !empty($d['wGEnabled']) ? $d['wGEnabled'] : null,
-			'IsPremiumDomain' 	=> !empty($d['isPremiumDomain']) ? $d['isPremiumDomain'] : null,
-			'PremiumPrice' 		=> !empty($d['premiumPrice']) ? $d['premiumPrice'] : null,
-			'EapFee' 			=> !empty($d['eapFee']) ? $d['eapFee'] : null,
+			'IdnCode' 			=> !empty($dd['idnCode']) ? $dd['idnCode'] : null,
+			'Nameservers' 		=> !empty($dd['nameservers']) ? $dd['nameservers'] : null,
+			'AddFreeWhoisguard' => !empty($dd['addFreeWhoisguard']) ? $dd['addFreeWhoisguard'] : null,
+			'WGEnabled' 		=> !empty($dd['wGEnabled']) ? $dd['wGEnabled'] : null,
+			'IsPremiumDomain' 	=> !empty($dd['isPremiumDomain']) ? $dd['isPremiumDomain'] : null,
+			'PremiumPrice' 		=> !empty($dd['premiumPrice']) ? $dd['premiumPrice'] : null,
+			'EapFee' 			=> !empty($dd['eapFee']) ? $dd['eapFee'] : null,
 		];
 
 		return array_merge($domainInfo, $this->parseContactInfo($cd), $billing, $extra);
