@@ -19,6 +19,79 @@ $contactsInfo = $ncDomains->getContacts($domainName);
 $result = $ncDomains->create($dataArr);
 ```
 
+### Enable / Disable sandbox mode (sandbox is disabled by default) 
+```php
+$client = new Namecheap\Api($apiUser, $apiKey, $userName, $clientIp, $returnType);
+$client->enableSandbox();
+$client->disableSandbox();
+```
+
+### Json Response example
+```json
+{
+	"ApiResponse": {
+		"Errors": "",
+		"RequestedCommand": "namecheap.domains.getList",
+		"CommandResponse": {
+			"DomainGetListResult": {
+				"Domain": [
+					{
+						"_ID": "127",
+						"_Name": "domain1.com",
+						"_User": "owner",
+						"_Created": "02/15/2016",
+						"_Expires": "02/15/2022",
+						"_IsExpired": "false",
+						"_IsLocked": "false",
+						"_AutoRenew": "false",
+						"_WhoisGuard": "ENABLED",
+						"_IsPremium": "true",
+						"_IsOurDNS": "true"
+					},
+					{
+						"_ID": "381",
+						"_Name": "domain2.com",
+						"_User": "owner",
+						"_Created": "04/28/2016",
+						"_Expires": "04/28/2023",
+						"_IsExpired": "false",
+						"_IsLocked": "false",
+						"_AutoRenew": "true",
+						"_WhoisGuard": "NOTPRESENT",
+						"_IsPremium": "false",
+						"_IsOurDNS": "true"
+					},
+					{
+						"_ID": "385",
+						"_Name": "domain3.com",
+						"_User": "owner",
+						"_Created": "05/22/2016",
+						"_Expires": "05/22/2023",
+						"_IsExpired": "false",
+						"_IsLocked": "false",
+						"_AutoRenew": "true",
+						"_WhoisGuard": "ENABLED",
+						"_IsPremium": "false",
+						"_IsOurDNS": "false"
+					}
+				]
+			},
+			"Paging": {
+				"TotalItems": "2",
+				"CurrentPage": "1",
+				"PageSize": "10"
+			},
+			"_Type": "namecheap.domains.getList"
+		},
+		"Server": "SERVER-NAME",
+		"GMTTimeDifference": "+5",
+		"ExecutionTime": "0.078",
+		"_xmlns": "http://api.namecheap.com/xml.response",
+		"_Status": "OK"
+	}
+}
+```
+
 #### domains
 ```php
 $ncDomains = new  Namecheap\Domain\Domains($apiUser, $apiKey, $userName, $clientIp, 'json');
