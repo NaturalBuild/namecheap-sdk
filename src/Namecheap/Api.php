@@ -56,11 +56,11 @@ class Api {
 	public function setReturnType($returnType) { $this->returnType = $returnType; }
 
 	public function enableSandbox() {
-		$this->endPoint  = 'https://api.sandbox.namecheap.com/xml.response';
+		$this->endPoint('https://api.sandbox.namecheap.com/xml.response');
 	}
 
 	public function disableSandbox() {
-		$this->endPoint  = 'https://api.namecheap.com/xml.response';
+		$this->endPoint('https://api.namecheap.com/xml.response');
 	}
 
 	/*API call method for sending requests using GET*/
@@ -92,7 +92,6 @@ class Api {
 		}
 
 		$url = $this->endPoint;
-
 		$data['ApiUser']  = $this->apiUser;
     	$data['ApiKey']   = $this->apiKey;
     	$data['UserName'] = $this->userName;
@@ -127,7 +126,7 @@ class Api {
         } else {
         	throw new \Exception("Invalid request method", 1);
         }
-
+ 
         curl_setopt($ch, CURLOPT_URL, $url);
 
         $xmlData = curl_exec($ch);
@@ -138,6 +137,10 @@ class Api {
         if (in_array($http_code, [401, 403])) {
             throw new UnauthorizedException('No Permission to perform this request');
         }
+
+        if(!empty($error)) {
+    		throw new \Exception($error);
+    	}
         
         if ($this->returnType === 'json') {
         	return json_encode(Xml::createArray($xmlData));
