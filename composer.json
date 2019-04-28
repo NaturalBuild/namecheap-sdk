@@ -1,9 +1,9 @@
 {
-    "name": "saddamrhossain/namecheap-sdk",
+    "name": "naturalbuild/namecheap-sdk",
     "description": "SDK library for Namecheap APIs",
     "type": "library",
     "license": "MIT",
-    "keywords": ["Namecheap", "api", "SDK"],
+    "keywords": ["Namecheap", "api", "namecheap SDK", "namecheap php"],
     "authors": [
         {
             "name": "Saddam Hossain",
