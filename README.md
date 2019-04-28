@@ -11,85 +11,32 @@ Namecheap SDK is a PHP lib that makes it easy to manage Namecheap APIs.
 
 ### Create a connection to the Namecheap API which you can then pass into other services, e.g. domains, later on
 ```php
-$client = new Namecheap\Api($apiUser, $apiKey, $userName, $clientIp, $returnType);
+#getDoaminList.php
+require_once "vendor/autoload.php";
+
+$apiUser = $userName = 'ncusername';
+$apiKey = '****************************';
+$clientIp = '198.168.0.123';
 // Return type can be: xml (default), array, json
+$returnType = 'json';
+
+
+$client = new Namecheap\Api($apiUser, $apiKey, $userName, $clientIp, $returnType);
+$client->setCurlOption(CURLOPT_SSL_VERIFYPEER, false); // For local development env (if needed)
+
 $ncDomains = new  Namecheap\Domain\Domains($client);
+$ncDomains->enableSandbox(); // Enable sandbox mode for the current instance
+
 $domainList = $ncDomains->getList();
+
+print_r($domainList);
+
+
+```
+
+```php
 $contactsInfo = $ncDomains->getContacts($domainName);
 $result = $ncDomains->create($dataArr);
-```
-
-### Enable / Disable sandbox mode (sandbox is disabled by default) 
-```php
-$client = new Namecheap\Api($apiUser, $apiKey, $userName, $clientIp, $returnType);
-$client->enableSandbox();
-$client->disableSandbox();
-```
-
-### Json Response example
-```json
-{
-	"ApiResponse": {
-		"Errors": "",
-		"RequestedCommand": "namecheap.domains.getList",
-		"CommandResponse": {
-			"DomainGetListResult": {
-				"Domain": [
-					{
-						"_ID": "127",
-						"_Name": "domain1.com",
-						"_User": "owner",
-						"_Created": "02/15/2016",
-						"_Expires": "02/15/2022",
-						"_IsExpired": "false",
-						"_IsLocked": "false",
-						"_AutoRenew": "false",
-						"_WhoisGuard": "ENABLED",
-						"_IsPremium": "true",
-						"_IsOurDNS": "true"
-					},
-					{
-						"_ID": "381",
-						"_Name": "domain2.com",
-						"_User": "owner",
-						"_Created": "04/28/2016",
-						"_Expires": "04/28/2023",
-						"_IsExpired": "false",
-						"_IsLocked": "false",
-						"_AutoRenew": "true",
-						"_WhoisGuard": "NOTPRESENT",
-						"_IsPremium": "false",
-						"_IsOurDNS": "true"
-					},
-					{
-						"_ID": "385",
-						"_Name": "domain3.com",
-						"_User": "owner",
-						"_Created": "05/22/2016",
-						"_Expires": "05/22/2023",
-						"_IsExpired": "false",
-						"_IsLocked": "false",
-						"_AutoRenew": "true",
-						"_WhoisGuard": "ENABLED",
-						"_IsPremium": "false",
-						"_IsOurDNS": "false"
-					}
-				]
-			},
-			"Paging": {
-				"TotalItems": "2",
-				"CurrentPage": "1",
-				"PageSize": "10"
-			},
-			"_Type": "namecheap.domains.getList"
-		},
-		"Server": "SERVER-NAME",
-		"GMTTimeDifference": "+5",
-		"ExecutionTime": "0.078",
-		"_xmlns": "http://api.namecheap.com/xml.response",
-		"_Status": "OK"
-	}
-}
 ```
 
 #### domains
@@ -162,7 +109,7 @@ curl -sS https://getcomposer.org/installer | php
 Next, run the Composer command to install the latest stable version of Namecheap-sdk:
 
 ```bash
-php composer.phar require naturalbuild/namecheap-sdk
+php composer.phar require saddamrhossain/namecheap-sdk
 ```
 
 After installing, you need to require Composer's autoloader:
@@ -182,4 +129,4 @@ composer.phar update
 
 | Version | Status     | Packagist           | Namespace    | Repo                | Docs                | PSR-7 | PHP Version |
 |---------|------------|---------------------|--------------|---------------------|---------------------|-------|-------------|
-| 1.x     | ---        | `naturalbuild/namecheap-sdk`     | `Namecheap`     | - | - | No    | >= 5.6    |
+| 1.x     | ---        | `saddamrhossain/namecheap-sdk`     | `Namecheap`     | - | - | No    | >= 5.6    |
