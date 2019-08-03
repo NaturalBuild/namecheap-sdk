@@ -26,7 +26,7 @@ class DomainsNs extends Api {
 	 * @param str|Nameserver|req : Nameserver to create
 	 * @param str|IP|req : Nameserver IP address
 	 */
-	public function create($std, $tld, $ns, $ip) {
+	public function create($sld, $tld, $ns, $ip) {
 		$data = ['SLD' => $sld, 'TLD' => $tld, 'Nameserver' => $ns, 'IP' => $ip];
 		return $this->get($this->command.__FUNCTION__, $data);
 	}
@@ -37,7 +37,7 @@ class DomainsNs extends Api {
 	 * @param str|TLD|Req : TLD of the DomainName
 	 * @param str|Nameserver|Req : Nameserver to delete
 	 */
-	public function delete($std, $tld, $ns) {
+	public function delete($sld, $tld, $ns) {
 		$data = ['SLD' => $sld, 'TLD' => $tld, 'Nameserver' => $ns];
 		return $this->get($this->command.__FUNCTION__, $data);
 	}
@@ -48,7 +48,7 @@ class DomainsNs extends Api {
 	 * @param str|TLD|Req : TLD of the DomainName
 	 * @param str|Nameserver|Req : Nameserver
 	 */
-	public function getInfo($std, $tld, $ns) {
+	public function getInfo($sld, $tld, $ns) {
 		$data = ['SLD' => $sld, 'TLD' => $tld, 'Nameserver' => $ns];
 		return $this->get($this->command.__FUNCTION__, $data);
 	}
@@ -61,7 +61,7 @@ class DomainsNs extends Api {
 	 * @param str|OldIP|Req : Existing IP address
 	 * @param str|IP|Req : New IP address
 	 */
-	public function update($std, $tld, $ns, $oldIp, $ip) {
+	public function update($sld, $tld, $ns, $oldIp, $ip) {
 		$data = ['SLD' => $sld, 'TLD' => $tld, 'Nameserver' => $ns, 'OldIP' => $oldIp, 'IP' => $ip];
 		return $this->get($this->command.__FUNCTION__, $data);
 	}
