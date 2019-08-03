@@ -16,7 +16,7 @@ use Namecheap\Exception\NamecheapException;
  */
 class DomainsDns extends Api {
 
-	protected $command = 'namecheap.domains.dns';
+	protected $command = 'namecheap.domains.dns.';
 
 	/**
 	 * @todo Sets domain to use our default DNS servers. Required for free services like Host record management, URL forwarding, email forwarding, dynamic dns and other value added services.
