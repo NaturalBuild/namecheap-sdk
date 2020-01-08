@@ -38,7 +38,7 @@ class DomainsDns extends Api {
 	 * @NOTE: Services like URL forwarding, Email forwarding, Dynamic DNS will not work for domains using custom nameservers
 	 */
 	public function setCustom($std, $tld, $ns) {
-		return $this->get($this->command.__FUNCTION__, ['STD' => $std, 'TLD' => $tld, 'Nameservers' => $ns]);
+		return $this->get($this->command.__FUNCTION__, ['SLD' => $std, 'TLD' => $tld, 'Nameservers' => $ns]);
 	}
 
 	/**
@@ -48,7 +48,7 @@ class DomainsDns extends Api {
 	 * @param str|TLD|Req : TLD of the DomainName
 	 */
 	public function getList($std, $tld) {
-		return $this->get($this->command.__FUNCTION__, ['STD' => $std, 'TLD' => $tld]);
+		return $this->get($this->command.__FUNCTION__, ['SLD' => $std, 'TLD' => $tld]);
 	}
 
 	/**
@@ -58,7 +58,7 @@ class DomainsDns extends Api {
 	 * @param str|TLD|Req : TLD of the DomainName
 	 */
 	public function getHosts($std, $tld) {
-		return $this->get($this->command.__FUNCTION__, ['STD' => $std, 'TLD' => $tld]);
+		return $this->get($this->command.__FUNCTION__, ['SLD' => $std, 'TLD' => $tld]);
 	}
 
 	/**
