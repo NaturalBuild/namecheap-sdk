@@ -25,7 +25,7 @@ class DomainsDns extends Api {
 	 * @param str|TLD|Req : TLD of the DomainName
 	 */
 	public function setDefault($std, $tld) {
-		return $this->get($this->command.__FUNCTION__, ['STD' => $std, 'TLD' => $tld]);
+		return $this->get($this->command.__FUNCTION__, ['SLD' => $std, 'TLD' => $tld]);
 	}
 
 	/**
