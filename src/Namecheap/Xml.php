@@ -115,6 +115,10 @@ class Xml {
                             }
                         }
                     } else {
+                        if (is_string($output) && empty($output)) {
+                            $output = [];
+                        }
+
                         foreach ($a as $k => $v) {
                             $output['_'.$k] = $v;       
                         }
