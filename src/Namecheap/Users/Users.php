@@ -236,7 +236,7 @@ class Users extends Api {
 	 * @param str|EmailFrom|opt : Enter a different value to overwrite the default value - Default Value: support@namecheap.com
 	 * @param str|URLPattern|opt : Enter a different URL to overwrite namecheap.com. Refer Example Request#2 - Default Value: http://namecheap.com [RESETCODE]
 	 */
-	public function resetPassword($findBy='EMAILADDRESS', $findByValue, $emailFromName=null, $emailFrom=null, $uRLPattern=null) {
+	public function resetPassword( $findByValue, $findBy='EMAILADDRESS', $emailFromName=null, $emailFrom=null, $uRLPattern=null) {
 		$this->userName = null; // UserName should be omitted for this API call.All other Global parameters must be included.
 
 		$data =  [
