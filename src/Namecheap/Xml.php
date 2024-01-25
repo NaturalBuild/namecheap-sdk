@@ -122,6 +122,7 @@ class Xml {
                     if (empty($output)) {
                         //for empty nodes
                         $output = '';
+                        break;
                     }
                     
                     // if only one node of its kind, assign it directly instead if array($value);
