@@ -59,7 +59,7 @@ class Xml {
      *
      * @return mixed
      */
-    private static function convert($node)
+    private static function &convert($node)
     {
         $output = [];
         switch ($node->nodeType) {
