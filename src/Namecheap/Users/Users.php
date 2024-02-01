@@ -230,13 +230,13 @@ class Users extends Api {
 	 * @todo When you call this API, a link to reset password will be emailed to the end user's profile email id.The end user needs to click on the link to reset password.
 	 * @note : UserName should be omitted for this API call.All other Global parameters must be included.
 	 *
-	 * @param str|FindBy|req : Possible values:EMAILADDRESS, DOMAINNAME,USERNAME
 	 * @param str|FindByValue|req : The username/email address/domain of the user
+	 * @param str|FindBy|req : Possible values:EMAILADDRESS, DOMAINNAME,USERNAME
 	 * @param str|EmailFromName|opt : Enter a different value to overwrite the default value - Default Value: namecheap.com
 	 * @param str|EmailFrom|opt : Enter a different value to overwrite the default value - Default Value: support@namecheap.com
 	 * @param str|URLPattern|opt : Enter a different URL to overwrite namecheap.com. Refer Example Request#2 - Default Value: http://namecheap.com [RESETCODE]
 	 */
-	public function resetPassword($findBy='EMAILADDRESS', $findByValue, $emailFromName=null, $emailFrom=null, $uRLPattern=null) {
+	public function resetPassword($findByValue, $findBy='EMAILADDRESS', $emailFromName=null, $emailFrom=null, $uRLPattern=null) {
 		$this->userName = null; // UserName should be omitted for this API call.All other Global parameters must be included.
 
 		$data =  [

@@ -71,6 +71,7 @@ class Xml {
                 break;
             case XML_ELEMENT_NODE:
                 // for each child node, call the covert function recursively
+                $textNodes = [];
                 for ($i = 0, $m = $node->childNodes->length; $i < $m; $i++) {
                     $child = $node->childNodes->item($i);
                     $v = self::convert($child);
@@ -84,22 +85,15 @@ class Xml {
                     } else {
                         //check if it is not an empty text node
                         if ($v !== '') {
-                            $output = $v;
+                            $textNodes[] = $v;
                         }
                     }
                 }
-                if (is_array($output)) {
-                    // if only one node of its kind, assign it directly instead if array($value);
-                    foreach ($output as $t => $v) {
-                        if (is_array($v) && count($v) == 1) {
-                            $output[$t] = $v[0];
-                        }
-                    }
-                    if (empty($output)) {
-                        //for empty nodes
-                        $output = '';
-                    }
+                
+                if (!empty($textNodes)) {
+                    $output['__text'] = implode(PHP_EOL, $textNodes);
                 }
+                
                 // loop through the attributes and collect them
                 if ($node->attributes->length) {
                     $a = [];
@@ -107,8 +101,7 @@ class Xml {
                         $a[$attrName] = (string) $attrNode->value;
                     }
                     // if its an leaf node, store the value in @value instead of directly storing it.
-                    if (!is_array($output) && !empty($output)) {
-                        $output = ['__text' => $output];
+                    if (!empty($output)) {
                         if (count($a)) {
                             foreach ($a as $kk => $vv) {
                                 $output['_'.$kk] = $vv;
@@ -118,12 +111,32 @@ class Xml {
                         if (is_string($output) && empty($output)) {
                             $output = [];
                         }
-
+                        
                         foreach ($a as $k => $v) {
-                            $output['_'.$k] = $v;       
+                            $output['_'.$k] = $v;
                         }
                     }
                 }
+                
+                if (is_array($output)) {
+                    if (empty($output)) {
+                        //for empty nodes
+                        $output = '';
+                        break;
+                    }
+                    
+                    // if only one node of its kind, assign it directly instead if array($value);
+                    foreach ($output as $t => $v) {
+                        if (is_array($v) && count($v) == 1) {
+                            $output[$t] = $v[0];
+                        }
+                    }
+                    
+                    if (count($output) == 1 && array_key_exists('__text', $output)) {
+                        $output = $output['__text'];
+                    }
+                }
+                
                 break;
         }
         return $output;
